@@ -4,9 +4,24 @@
   <p>Welcome...</p>
   <button @click="handleClick">click me</button>
   <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale" @close="toggleModal"/>
+    <Modal :header="header" :text="text" theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">sign up now</a>
+        <a href="#">more info</a>
+      </template>
+      <h1>Ninja Givaway!</h1>
+      <p>Grap your ninja swag for half price!</p>
+    </Modal>
+  </div>
+  
+  <div v-if="showModalTwo">
+    <Modal  @close="toggleModalTwo">
+      <h1>sign up to the news letter!</h1>
+      <p>For updates and promo codes</p>
+    </Modal>
   </div>
   <button @click="toggleModal">open modal</button>
+  <button @click="toggleModalTwo">open modal</button>
 </template>
 
 <script>
@@ -17,9 +32,8 @@ export default {
   data(){
     return {
       title:'My frist Vue App :)',
-      header:'Sign up for the Giveway!',
-      text:'Grap your ninja swag for half price!',
       showModal: false,
+      showModalTwo:false,
     }
   },
   methods: {
@@ -30,7 +44,10 @@ export default {
     },
     toggleModal(){
       this.showModal = !this.showModal  
-    }
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo  
+    },
   }
 }
 </script>
